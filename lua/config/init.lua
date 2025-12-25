@@ -1,0 +1,5 @@
+require("config.options")
+require("config.remap")
+require("config.autocmd")
+require("config.schedule")
+require("config.lazy")
