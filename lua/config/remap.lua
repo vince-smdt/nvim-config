@@ -19,6 +19,11 @@ local function client_supports_method(client, method, bufnr)
 end
 
 -- DESKTOP GCS (Sirius)
+
+local build_solution = function(project)
+	vim.cmd("!.\\setup\\generate_vs_solution.bat && .\\setup\\generate_compile_commands_debug.bat")
+end
+
 local build_project = function(project)
 	vim.cmd(
 		'!"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Msbuild\\Current\\Bin\\MSBuild.exe" sirius-gcs.sln /t:'
@@ -30,6 +35,10 @@ end
 local launch_project = function(project)
 	vim.cmd('!"out\\bin\\Debug\\' .. project .. '.exe"')
 end
+
+vim.keymap.set("n", "<leader>bs", function()
+	build_solution("sirius-gcs")
+end, { desc = "Build sirius-gcs solution" })
 
 vim.keymap.set("n", "<leader>ba", function()
 	build_project("sirius-gcs")

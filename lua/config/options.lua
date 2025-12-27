@@ -8,6 +8,8 @@ vim.cmd("set softtabstop=4")
 -- Line numbers
 vim.o.number = true
 vim.o.relativenumber = true
+vim.o.cursorline = true
+vim.o.cursorlineopt = "number"
 
 -- Scrolling
 vim.o.scrolloff = 10
