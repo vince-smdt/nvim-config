@@ -2,21 +2,14 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 vim.keymap.set("n", "<leader>fe", vim.cmd.Ex)
-
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
-
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
-
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
-local function client_supports_method(client, method, bufnr)
-	if vim.fn.has("nvim-0.11") == 1 then
-		return client:supports_method(method, bufnr)
-	else
-		return client.supports_method(method, { bufnr = bufnr })
-	end
-end
+vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+
+vim.keymap.set("i", "{<CR>", "{<CR>}<Esc>O", { noremap = true })
 
 -- DESKTOP GCS (Sirius)
 

@@ -107,6 +107,7 @@ return {
 
 		local servers = {
 			clangd = {},
+			basedpyright = {},
 			lua_ls = {
 				settings = {
 					Lua = {
