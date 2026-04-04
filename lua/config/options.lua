@@ -12,6 +12,9 @@ vim.o.cursorline = true
 vim.o.cursorlineopt = "number"
 vim.g.netrw_bufsettings = "noma nomod nu rnu nobl nowrap ro"
 
+-- Cursor
+vim.opt.guicursor = "n-v-c-i:block"
+
 -- Scrolling
 vim.o.scrolloff = 10
 
