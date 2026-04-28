@@ -117,7 +117,6 @@ return {
 					},
 				},
 			},
-			rust_analyzer = {},
 		}
 
 		local ensure_installed = vim.tbl_keys(servers or {})
@@ -129,6 +128,11 @@ return {
 		require("mason-lspconfig").setup({
 			ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
 			automatic_installation = false,
+			automatic_enable = {
+				exclude = {
+					"rust_analyzer",
+				},
+			},
 			handlers = {
 				function(server_name)
 					local server = servers[server_name] or {}
