@@ -1,24 +1,55 @@
-return {
+-- TODO: remove later
+vim.opt.packpath:prepend(vim.fn.stdpath("data") .. "/site")
+-- TODO: remove later
+
+vim.pack.add({
+	{ src = GH .. "tpope/vim-fugitive" },
+	{ src = GH .. "lewis6991/gitsigns.nvim" },
+})
+
+local maps = {
 	{
-		"tpope/vim-fugitive",
-		config = function()
-			vim.keymap.set("n", "<leader>gb", "<cmd>G blame<CR>", { desc = "Git: Blame" })
-			vim.keymap.set("n", "<leader>gd", "<cmd>Gdiffsplit<CR>", { desc = "Git: Diff" })
-			vim.keymap.set("n", "<leader>gpl", "<cmd>G pull<CR>", { desc = "Git: Pull" })
-			vim.keymap.set("n", "<leader>gps", "<cmd>G push<CR>", { desc = "Git: Push" })
-			vim.keymap.set("n", "<leader>gs", "<cmd>G status<CR>", { desc = "Git: Status" })
-		end,
+		k = "<leader>gb",
+		d = "Git: Blame",
+		m = "<cmd>G blame<CR>",
 	},
 	{
-		"lewis6991/gitsigns.nvim",
-		opts = {
-			signs = {
-				add = { text = "+" },
-				change = { text = "~" },
-				delete = { text = "_" },
-				topdelete = { text = "‾" },
-				changedelete = { text = "~" },
-			},
-		},
+		k = "<leader>gd",
+		d = "<cmd>Gdiffsplit<CR>",
+		m = "Git: Diff",
+	},
+	{
+		k = "<leader>gpl",
+		d = "<cmd>G pull<CR>",
+		m = "Git: Pull",
+	},
+	{
+		k = "<leader>gps",
+		d = "<cmd>G push<CR>",
+		m = "Git: Push",
+	},
+	{
+		k = "<leader>gs",
+		d = "<cmd>G status<CR>",
+		m = "Git: Status",
 	},
 }
+
+for _, map in ipairs(maps) do
+	vim.keymap.set("n", map.k, map.m, { desc = map.d })
+end
+
+local gitsigns = require("gitsigns")
+
+gitsigns.setup({
+	signs = {
+		add = { text = "+" },
+		change = { text = "~" },
+		delete = { text = "_" },
+		topdelete = { text = "‾" },
+		changedelete = { text = "~" },
+	},
+})
+
+-- TODO: remove later
+return {}
