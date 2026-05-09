@@ -1,22 +1,23 @@
-return {
-	"mfussenegger/nvim-dap",
-	dependencies = {
-		"nvim-neotest/nvim-nio",
-		"rcarriga/nvim-dap-ui",
-		"mfussenegger/nvim-dap-python",
-		"theHamsta/nvim-dap-virtual-text",
-	},
-	config = function()
+vim.api.nvim_create_autocmd("VimEnter", {
+	once = true,
+	callback = function()
+		vim.pack.add({
+			{ src = GH .. "mfussenegger/nvim-dap" },
+			{ src = GH .. "nvim-neotest/nvim-nio" },
+			{ src = GH .. "rcarriga/nvim-dap-ui" },
+			{ src = GH .. "mfussenegger/nvim-dap-python" },
+			{ src = GH .. "theHamsta/nvim-dap-virtual-text" },
+		})
+
 		local dap = require("dap")
 		local dapui = require("dapui")
-		local dap_python = require("dap-python")
 
 		require("dapui").setup({})
 		require("nvim-dap-virtual-text").setup({
-			commented = true, -- Show virtual text alongside comment
+			commented = true,
 		})
 
-		dap_python.setup("python")
+		require("dap-python").setup("python")
 
 		vim.fn.sign_define("DapBreakpoint", {
 			text = "",
@@ -26,28 +27,25 @@ return {
 		})
 
 		vim.fn.sign_define("DapBreakpointRejected", {
-			text = "", -- or "❌"
+			text = "",
 			texthl = "DiagnosticSignError",
 			linehl = "",
 			numhl = "",
 		})
 
 		vim.fn.sign_define("DapStopped", {
-			text = "", -- or "→"
+			text = "",
 			texthl = "DiagnosticSignWarn",
 			linehl = "Visual",
 			numhl = "DiagnosticSignWarn",
 		})
 
-		-- Automatically open/close DAP UI
 		dap.listeners.after.event_initialized["dapui_config"] = function()
 			dapui.open()
 		end
 
-		local opts = { noremap = true, silent = true }
-
-		local opts_with_desc = function(desc_msg)
-			return vim.tbl_extend("force", opts, { desc = desc_msg })
+		local function opts_with_desc(desc)
+			return { noremap = true, silent = true, desc = desc }
 		end
 
 		vim.keymap.set("n", "<leader>db", function()
@@ -78,4 +76,4 @@ return {
 			dapui.toggle()
 		end, opts_with_desc("DAP: Toggle UI"))
 	end,
-}
+})

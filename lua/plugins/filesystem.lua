@@ -1,7 +1,3 @@
--- TODO: remove later
-vim.opt.packpath:prepend(vim.fn.stdpath("data") .. "/site")
--- TODO: remove later
-
 vim.pack.add({
 	{ src = GH .. "stevearc/oil.nvim" },
 	{ src = GH .. "nvim-mini/mini.icons" },
@@ -14,7 +10,3 @@ require("oil").setup({
 		show_hidden = true,
 	},
 })
-
--- TODO: remove later
-return {}
--- TODO: remove later

@@ -1,18 +1,20 @@
-return {
-	"nvim-telescope/telescope.nvim",
-	event = "VimEnter",
-	dependencies = {
-		"nvim-lua/plenary.nvim",
-		{
-			"nvim-telescope/telescope-fzf-native.nvim",
-			build = "make",
-			cond = function()
-				return vim.fn.executable("make") == 1
-			end,
-		},
-		{ "nvim-telescope/telescope-ui-select.nvim" },
-	},
-	config = function()
+vim.api.nvim_create_autocmd("VimEnter", {
+	once = true,
+	callback = function()
+		vim.pack.add({
+			{ src = GH .. "nvim-telescope/telescope.nvim" },
+			{ src = GH .. "nvim-lua/plenary.nvim" },
+			{ src = GH .. "nvim-telescope/telescope-fzf-native.nvim" },
+			{ src = GH .. "nvim-telescope/telescope-ui-select.nvim" },
+		})
+
+		if vim.fn.executable("make") == 1 then
+			local fzf_dir = vim.fn.stdpath("data") .. "/site/pack/core/opt/telescope-fzf-native.nvim"
+			if vim.fn.isdirectory(fzf_dir) == 1 then
+				vim.fn.system("make -C " .. vim.fn.shellescape(fzf_dir))
+			end
+		end
+
 		require("telescope").setup({
 			pickers = {
 				find_files = {
@@ -59,4 +61,4 @@ return {
 			builtin.find_files({ cwd = vim.fn.stdpath("config") })
 		end, { desc = "[S]earch [N]eovim files" })
 	end,
-}
+})

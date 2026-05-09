@@ -1,7 +1,3 @@
--- TODO: remove later
-vim.opt.packpath:prepend(vim.fn.stdpath("data") .. "/site")
--- TODO: remove later
-
 vim.api.nvim_create_autocmd("VimEnter", {
 	once = true,
 	callback = function()
@@ -38,7 +34,3 @@ vim.api.nvim_create_autocmd("VimEnter", {
 		end, { desc = "[F]ormat buffer" })
 	end,
 })
-
--- TODO: remove later
-return {}
--- TODO: remove later

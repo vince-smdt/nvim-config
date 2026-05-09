@@ -1,7 +1,3 @@
--- TODO: remove later
-vim.opt.packpath:prepend(vim.fn.stdpath("data") .. "/site")
--- TODO: remove later
-
 vim.pack.add({
 	{ src = GH .. "tpope/vim-fugitive" },
 	{ src = GH .. "lewis6991/gitsigns.nvim" },
@@ -50,6 +46,3 @@ gitsigns.setup({
 		changedelete = { text = "~" },
 	},
 })
-
--- TODO: remove later
-return {}

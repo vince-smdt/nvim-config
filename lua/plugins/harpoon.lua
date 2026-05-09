@@ -1,8 +1,5 @@
--- TODO: remove later
-vim.opt.packpath:prepend(vim.fn.stdpath("data") .. "/site")
--- TODO: remove later
-
 vim.pack.add({
+	{ src = GH .. "nvim-lua/plenary.nvim" },
 	{ src = GH .. "ThePrimeagen/harpoon", version = "harpoon2" },
 })
 
@@ -72,7 +69,3 @@ local maps = {
 for _, map in ipairs(maps) do
 	vim.keymap.set("n", map.k, map.m, { desc = map.d })
 end
-
--- TODO: remove later
-return {}
--- TODO: remove later
