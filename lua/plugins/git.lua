@@ -7,27 +7,37 @@ local maps = {
 	{
 		k = "<leader>gb",
 		d = "Git: Blame",
-		m = "<cmd>G blame<CR>",
+		m = function()
+			vim.cmd("G blame")
+		end,
 	},
 	{
 		k = "<leader>gd",
-		d = "<cmd>Gdiffsplit<CR>",
-		m = "Git: Diff",
+		d = "Git: Diff",
+		m = function()
+			vim.cmd("Gdiffsplit")
+		end,
 	},
 	{
 		k = "<leader>gpl",
-		d = "<cmd>G pull<CR>",
-		m = "Git: Pull",
+		d = "Git: Pull",
+		m = function()
+			vim.cmd("G pull")
+		end,
 	},
 	{
 		k = "<leader>gps",
-		d = "<cmd>G push<CR>",
-		m = "Git: Push",
+		d = "Git: Push",
+		m = function()
+			vim.cmd("G push")
+		end,
 	},
 	{
 		k = "<leader>gs",
-		d = "<cmd>G status<CR>",
-		m = "Git: Status",
+		d = "Git: Status",
+		m = function()
+			vim.cmd("G status")
+		end,
 	},
 }
 
