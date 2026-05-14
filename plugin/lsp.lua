@@ -43,6 +43,9 @@ vim.api.nvim_create_autocmd("VimEnter", {
 				map("<leader>th", function()
 					vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
 				end, "Toggle Inlay Hints")
+				map("K", function()
+					vim.lsp.buf.hover({ border = "rounded" })
+				end, "Hover docs")
 			end,
 		})
 
